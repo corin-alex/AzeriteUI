@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.170-Release] 2019-08-16
+### Fixed
+- Fixed an issue that sometimes would leave the actionbutton overlay glow unanchored, causing it to fill almost the entire screen. Ouch.  
+
 ## [1.2.169-Release] 2019-08-15
 ### Fixed
 - Fixed an issue introduced in build 1.2.167 when using alternative nameplate addons and trying to access our own menu. 
