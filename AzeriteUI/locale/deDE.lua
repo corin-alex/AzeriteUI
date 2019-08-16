@@ -63,7 +63,7 @@ L["Sticky Minimap bars disabled."] = "Minimap-Symbole gelöst."
 -- and must be very short, or we'll have an ugly overflow going. 
 L["to level %s"] = "bis Level %s"
 L["to %s"] = "bis %s"
-L["to next trait"] = "bis zum nächsten Trait"
+L["to next level"] = "bis zum nächsten Trait"
 
 -- Try to keep the following fairly short, as they should
 -- ideally be shown on a single line in the tooltip, 

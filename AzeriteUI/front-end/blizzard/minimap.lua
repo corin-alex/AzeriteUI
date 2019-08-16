@@ -702,7 +702,7 @@ end
 local PostUpdate_AP = function(element, min, max, level)
 	local description = element.Value and element.Value.Description
 	if description then 
-		description:SetText(L["to next trait"])
+		description:SetText(L["to next level"])
 	end 
 end
 

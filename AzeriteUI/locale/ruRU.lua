@@ -61,7 +61,7 @@ L["Sticky Minimap bars disabled."] = "Информация об опыте\ре�
 -- and must be very short, or we'll have an ugly overflow going. 
 L["to level %s"] = "до %s уровня" 
 L["to %s"] = "до %s"
-L["to next trait"] = "до следующей особенности"
+L["to next level"] = "до следующей особенности"
 
 -- Try to keep the following fairly short, as they should
 -- ideally be shown on a single line in the tooltip, 

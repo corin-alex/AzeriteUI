@@ -62,7 +62,7 @@ L["Sticky Minimap bars disabled."] = true
 -- and must be very short, or we'll have an ugly overflow going. 
 L["to level %s"] = true 
 L["to %s"] = true
-L["to next trait"] = true
+L["to next level"] = true
 
 -- Try to keep the following fairly short, as they should
 -- ideally be shown on a single line in the tooltip, 

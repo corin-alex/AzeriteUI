@@ -60,7 +60,7 @@ L["Sticky Minimap bars disabled."] = "粘性小地图条已禁用。"
 -- and must be very short, or we'll have an ugly overflow going. 
 L["to level %s"] = "到 %s 级" 
 L["to %s"] = "到 %s"
-L["to next trait"] = "到下一个特质"
+L["to next level"] = "到下一个特质"
 
 -- Try to keep the following fairly short, as they should
 -- ideally be shown on a single line in the tooltip, 

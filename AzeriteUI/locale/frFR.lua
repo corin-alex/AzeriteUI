@@ -63,7 +63,7 @@ L["Sticky Minimap bars disabled."] = "Barres de la Mini-Carte desépinglées."
 -- and must be very short, or we'll have an ugly overflow going. 
 L["to level %s"] = "pour monter niveau %s" 
 L["to %s"] = "jusqu\'à %"
-L["to next trait"] = "jusqu\'au prochain trait"
+L["to next level"] = "jusqu\'au prochain trait"
 
 -- Try to keep the following fairly short, as they should
 -- ideally be shown on a single line in the tooltip, 
