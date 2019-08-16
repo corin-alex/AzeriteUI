@@ -657,7 +657,6 @@ local Core = {
 
 	DisableUIWidgets = {
 		ActionBars = true, 
-		--Alerts = true,
 		Auras = true,
 		BuffTimer = true, 
 		CaptureBar = true,
@@ -665,7 +664,6 @@ local Core = {
 		Chat = true,
 		LevelUpDisplay = true,
 		Minimap = true,
-		--ObjectiveTracker = true, 
 		OrderHall = true,
 		PlayerPowerBarAlt = true, 
 		TotemFrame = true, 
@@ -681,9 +679,8 @@ local Core = {
 		UnitFrameBoss = true,
 		UnitFrameArena = not(	CogWheel("LibModule"):IsAddOnEnabled("sArena") 
 							or	CogWheel("LibModule"):IsAddOnEnabled("Gladius") 
-							or 	CogWheel("LibModule"):IsAddOnEnabled("GladiusEx") ),
+							or	CogWheel("LibModule"):IsAddOnEnabled("GladiusEx")),
 
-		--Warnings = true,
 		ZoneText = true
 	},
 	DisableUIMenuPages = {
