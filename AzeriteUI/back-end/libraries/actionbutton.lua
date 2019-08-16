@@ -1,4 +1,4 @@
-local LibSecureButton = CogWheel:Set("LibSecureButton", 59)
+local LibSecureButton = CogWheel:Set("LibSecureButton", 60)
 if (not LibSecureButton) then	
 	return
 end
@@ -342,7 +342,7 @@ local Update = function(self, event, ...)
 
 	elseif (event == "ACTIONBAR_SLOT_CHANGED") then
 		if ((arg1 == 0) or (arg1 == self.buttonAction)) then
-			self.SpellHighlight:Hide()
+			self:HideOverlayGlow()
 			self:Update()
 			self:UpdateAutoCastMacro()
 		end
@@ -379,22 +379,22 @@ local Update = function(self, event, ...)
 	elseif (event == "SPELL_ACTIVATION_OVERLAY_GLOW_SHOW") then
 		local spellID = self:GetSpellID()
 		if (spellID and (spellID == arg1)) then
-			self.SpellHighlight:Show()
+			self:ShowOverlayGlow()
 		else
 			local actionType, id = GetActionInfo(self.buttonAction)
 			if (actionType == "flyout") and FlyoutHasSpell(id, arg1) then
-				self.SpellHighlight:Show()
+				self:ShowOverlayGlow()
 			end
 		end
 
 	elseif (event == "SPELL_ACTIVATION_OVERLAY_GLOW_HIDE") then
 		local spellID = self:GetSpellID()
 		if (spellID and (spellID == arg1)) then
-			self.SpellHighlight:Hide()
+			self:HideOverlayGlow()
 		else
 			local actionType, id = GetActionInfo(self.buttonAction)
 			if actionType == "flyout" and FlyoutHasSpell(id, arg1) then
-				self.SpellHighlight:Hide()
+				self:HideOverlayGlow()
 			end
 		end
 
@@ -789,25 +789,34 @@ ActionButton.UpdateGrid = function(self)
 	self:SetAlpha(0)
 end
 
+ActionButton.ShowOverlayGlow = function(self)
+	if self.SpellHighlight then 
+		local model = self.SpellHighlight.Model
+		local w,h = self:GetSize()
+		if (w and h) then 
+			model:SetSize(w*2,h*2)
+			model:Show()
+		else 
+			model:Hide()
+		end 
+		self.SpellHighlight:Show()
+	end
+end
+
+ActionButton.HideOverlayGlow = function(self)
+	if self.SpellHighlight then 
+		self.SpellHighlight:Hide()
+		self.SpellHighlight.Model:Hide()
+	end
+end
+
 ActionButton.UpdateSpellHighlight = function(self)
 	if self.SpellHighlight then 
 		local spellId = self:GetSpellID()
 		if (spellId and IsSpellOverlayed(spellId)) then
-			if (not self.SpellHighlight:IsShown()) then 
-				local model = self.SpellHighlight.Model
-				local w,h = self:GetSize()
-				if (w and h) then 
-					model:SetSize(w*2,h*2)
-					if (not model:IsShown()) then 
-						model:Show()
-					end 
-				else 
-					model:Hide()
-				end 
-				self.SpellHighlight:Show()
-			end 
+			self:ShowOverlayGlow()
 		else
-			self.SpellHighlight:Hide()
+			self:HideOverlayGlow()
 		end
 	end 
 end
@@ -1112,6 +1121,8 @@ LibSecureButton.CreateButtonSpellHighlight = function(self, button)
 	model:SetCamDistanceScale(3)
 	model:SetPortraitZoom(0)
 	model:SetPosition(0, 0, 0)
+	model:SetPoint("TOP")
+
 	button.SpellHighlight.Model = model
 end
 
