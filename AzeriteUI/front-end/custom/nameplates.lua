@@ -122,6 +122,28 @@ local PostUpdateAuraButton = function(element, button)
 	end 
 end
 
+local PostUpdateOrientations = function(plate)
+	if plate.isYou then 
+		if (not plate.Health.isYou) then 
+			plate.Health:SetOrientation("RIGHT")
+			plate.Health.isYou = true
+		end 
+		if (not plate.Cast.isYou) then 
+			plate.Cast:SetOrientation("RIGHT")
+			plate.Cast.isYou = true
+		end 
+	else 
+		if (plate.Health.isYou) then 
+			plate.Health:SetOrientation("LEFT")
+			plate.Health.isYou = nil
+		end 
+		if (plate.Cast.isYou) then 
+			plate.Cast:SetOrientation("LEFT")
+			plate.Cast.isYou = nil
+		end 
+	end 
+end
+
 -- Library Updates
 -- *will be called by the library at certain times
 -----------------------------------------------------------------
@@ -129,12 +151,26 @@ end
 -- but before the library calls its own updates.
 Module.PreUpdateNamePlateOptions = function(self)
 
+	--[[
 	local _, instanceType = IsInInstance()
 	if (instanceType == "none") then
 		SetCVar("nameplateMaxDistance", 30)
 	else
 		SetCVar("nameplateMaxDistance", 45)
 	end
+
+	local _, instanceType = IsInInstance()
+	if (instanceType == "none") then
+		if self.layout.SetConsoleVars then 
+			local value = self.layout.SetConsoleVars.nameplateMaxDistance or GetCVarDefault("nameplateMaxDistance")
+			SetCVar("nameplateMaxDistance", value)
+		else 
+			SetCVar("nameplateMaxDistance", 30)
+		end 
+	else
+		SetCVar("nameplateMaxDistance", 45)
+	end
+	]]
 
 	-- If these are enabled the GameTooltip will become protected, 
 	-- and all sort of taints and bugs will occur.
@@ -153,8 +189,8 @@ Module.PostUpdateNamePlateOptions = function(self, isInInstace)
 	self:PreUpdateNamePlateOptions()
 
 	if layout.SetConsoleVars then 
-		for cVarName, value in pairs(layout.SetConsoleVars) do 
-			SetCVar(cVarName, value)
+		for name,value in pairs(layout.SetConsoleVars) do 
+			SetCVar(name, value or GetCVarDefault(name))
 		end 
 	end 
 
@@ -165,7 +201,7 @@ Module.PostUpdateNamePlateOptions = function(self, isInInstace)
 	C_NamePlate.SetNamePlateEnemySize(unpack(layout.Size))
 	C_NamePlate.SetNamePlateSelfSize(unpack(layout.Size))
 
-	NamePlateDriverFrame.UpdateNamePlateOptions = function() end
+	--NamePlateDriverFrame.UpdateNamePlateOptions = function() end
 end
 
 -- Called after a nameplate is created.
@@ -196,6 +232,7 @@ Module.PostCreateNamePlate = function(self, plate, baseFrame)
 	health.colorReaction = layout.HealthColorReaction
 	health.colorThreat = layout.HealthColorThreat
 	health.colorHealth = layout.HealthColorHealth
+	health.colorPlayer = layout.HealthColorPlayer
 	health.frequent = layout.HealthFrequent
 	health.threatFeedbackUnit = layout.HealthThreatFeedbackUnit
 	health.threatHideSolo = layout.HealthThreatHideSolo
@@ -286,6 +323,8 @@ Module.PostCreateNamePlate = function(self, plate, baseFrame)
 	if (not db.enableAuras) then 
 		plate:DisableElement("Auras")
 	end 
+
+	plate.PostUpdate = PostUpdateOrientations
 
 	-- The library does this too, but isn't exposing it to us.
 	Plates[plate] = baseFrame
