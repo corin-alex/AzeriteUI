@@ -1,4 +1,4 @@
-local LibNamePlate = CogWheel:Set("LibNamePlate", 37)
+local LibNamePlate = CogWheel:Set("LibNamePlate", 39)
 if (not LibNamePlate) then	
 	return
 end
@@ -407,6 +407,10 @@ NamePlate.UpdateFrameLevel = function(self)
 	end
 end
 
+NamePlate.UpdateScale = function(self)
+	self:SetScale(LibNamePlate.SCALE * self.baseFrame:GetScale())
+end
+
 NamePlate.OnShow = function(self)
 	local unit = self.unit
 	if not UnitExists(unit) then
@@ -756,10 +760,11 @@ LibNamePlate.CreateNamePlate = function(self, baseFrame, name)
 	plate.colors = Colors
 	plate.baseFrame = baseFrame
 	plate:Hide()
+	plate:SetPoint("CENTER", baseFrame, "CENTER", 0, 0)
 	plate:SetFrameStrata("BACKGROUND")
-	plate:SetAlpha(plate.currentAlpha)
 	plate:SetFrameLevel(plate.frameLevel)
-	plate:SetScale(LibNamePlate.SCALE)
+	plate:SetAlpha(plate.currentAlpha)
+	plate:UpdateScale()
 
 	-- Make sure the visible part of the Blizzard frame remains hidden
 	local unitframe = baseFrame.UnitFrame
@@ -768,27 +773,11 @@ LibNamePlate.CreateNamePlate = function(self, baseFrame, name)
 		unitframe:HookScript("OnShow", function(unitframe) unitframe:Hide() end) 
 	end
 
-	-- Create the sizer frame that handles nameplate positioning
-	-- *Blizzard changed nameplate format and also anchoring points in Legion,
-	--  so naturally we're using a different function for this too. Speed!
-	if (LibNamePlate:IsBuild("8.2.0")) then 
-		plate:SetPoint("CENTER", baseFrame, "CENTER", 0, 0)
-		plate:Show()	
-	else
-		local sizer = plate:CreateFrame()
-		sizer.plate = plate
-		sizer:SetPoint("BOTTOMLEFT", WorldFrame, "BOTTOMLEFT", 0, 0)
-		sizer:SetPoint("TOPRIGHT", baseFrame, "CENTER", 0, 0)
-		sizer:SetScript("OnSizeChanged", function(sizer, width, height)
-			local plate = sizer.plate
-			plate:Hide() -- hiding when moving is still faster
-			plate:SetPoint("TOP", WorldFrame, "BOTTOMLEFT", width, height)
-			plate:Show()
-		end)
-	end
-
 	-- Make sure our nameplate fades out when the blizzard one is hidden.
-	baseFrame:HookScript("OnHide", function(baseFrame) plate:OnHide() end)
+	baseFrame:HookScript("OnHide", function() plate:OnHide() end)
+
+	-- Follow the blizzard scale changes.
+	baseFrame:HookScript("OnSizeChanged", function() plate:UpdateScale() end)
 
 	-- Since constantly updating frame levels can cause quite the performance drop, 
 	-- we're just giving each frame a set frame level when they spawn. 
@@ -895,15 +884,10 @@ end
 
 -- TODO: Make this useful. 
 LibNamePlate.UpdateAllScales = function(self)
-	--local oldScale = LibNamePlate.SCALE
-	--local scale = LibNamePlate:GetFrame("UICenter"):GetEffectiveScale()
-	--if scale then
-	--	SCALE = scale
-	--end
 	if (oldScale ~= LibNamePlate.SCALE) then
 		for baseFrame, plate in pairs(allPlates) do
 			if plate then
-				plate:SetScale(LibNamePlate.SCALE)
+				plate:UpdateScale()
 			end
 		end
 	end
