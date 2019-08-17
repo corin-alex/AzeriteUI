@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.171-Release] 2019-08-17
+### Changed
+- Nameplates are now scaled according to distance, and also have their max range increased. 
+- The Personal Resource Display - the player's own optional nameplate - is now class colored, and have its bar growing towards the right, same as the player unitframe.
+
 ## [1.2.170-Release] 2019-08-16
 ### Fixed
 - Fixed an issue that sometimes would leave the actionbutton overlay glow unanchored, causing it to fill almost the entire screen. Ouch.  
