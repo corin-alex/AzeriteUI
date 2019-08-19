@@ -1,4 +1,4 @@
-local LibTooltip = CogWheel:Set("LibTooltip", 53)
+local LibTooltip = CogWheel:Set("LibTooltip", 54)
 if (not LibTooltip) then	
 	return
 end
@@ -14,6 +14,9 @@ assert(LibSecureHook, "LibTooltip requires LibSecureHook to be loaded.")
 
 local LibFrame = CogWheel("LibFrame")
 assert(LibFrame, "LibTooltip requires LibFrame to be loaded.")
+
+local LibZone = CogWheel("LibZone")
+assert(LibZone, "LibTooltip requires LibZone to be loaded.")
 
 local LibTooltipScanner = CogWheel("LibTooltipScanner")
 assert(LibTooltipScanner, "LibTooltip requires LibTooltipScanner to be loaded.")
@@ -53,6 +56,7 @@ local type = type
 local unpack = unpack
 
 -- WoW API 
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetCVarBool = _G.GetCVarBool
 local GetQuestGreenRange = _G.GetQuestGreenRange
 local GetTime = _G.GetTime
@@ -346,10 +350,10 @@ end
 local Colors = {
 
 	-- some basic ui colors used by all text
-	normal = prepare(229/255, 178/255, 38/255),
-	highlight = prepare(250/255, 250/255, 250/255),
-	offwhite = prepare(196/255, 196/255, 196/255), 
-	title = prepare(255/255, 234/255, 137/255),
+	normal = prepare( 229/255, 178/255, 38/255 ),
+	highlight = prepare( 250/255, 250/255, 250/255 ),
+	offwhite = prepare( 196/255, 196/255, 196/255 ), 
+	title = prepare( 255/255, 234/255, 137/255 ),
 
 	-- health bar coloring
 	health = prepare( 25/255, 178/255, 25/255 ),
@@ -371,6 +375,17 @@ local Colors = {
 	reaction = prepareGroup(FACTION_BAR_COLORS),
 	quality = prepareGroup(ITEM_QUALITY_COLORS),
 	
+	-- zone names
+	zone = {
+		arena = prepare( 175/255, 76/255, 56/255 ),
+		combat = prepare( 175/255, 76/255, 56/255 ),
+		contested = prepare( 229/255, 159/255, 28/255 ),
+		friendly = prepare( 64/255, 175/255, 38/255 ),
+		hostile = prepare( 175/255, 76/255, 56/255 ),
+		sanctuary = prepare( 104/255, 204/255, 239/255 ),
+		unknown = prepare( 255/255, 234/255, 137/255 ) -- instances, bgs, contested zones on pve realms 
+	},
+
 	-- magic school coloring
 	debuff = prepareGroup(DebuffTypeColor),
 
@@ -1518,6 +1533,18 @@ Tooltip.SetUnit = function(self, unit)
 				elseif data.creatureType then 
 					self:AddLine(data.creatureType, colors.offwhite[1], colors.offwhite[2], colors.offwhite[3])
 				end  
+			end 
+
+			if data.uiMapID then 
+				local uiMapID = GetBestMapForUnit("player")
+				if (uiMapID ~= data.uiMapID) then 
+					local mapName, mapPvPType, mapPvPLabel = LibZone:GetPvPType(uiMapID)
+					local color = mapPvPType and colors.zone[mapPvPType] or colors.zone.unknown
+
+					self:AddLine(" ")
+					self:AddLine(LOCATION_COLON, colors.quest.gray[1], colors.quest.gray[2], colors.quest.gray[3])
+					self:AddDoubleLine(mapName, mapPvPLabel, colors.offwhite[1], colors.offwhite[2], colors.offwhite[3], color[1], color[2], color[3])
+				end
 			end 
 
 			if self:UpdateBarValues(unit, true) then 

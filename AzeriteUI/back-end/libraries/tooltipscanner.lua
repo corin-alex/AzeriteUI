@@ -1,4 +1,4 @@
-local LibTooltipScanner = CogWheel:Set("LibTooltipScanner", 29)
+local LibTooltipScanner = CogWheel:Set("LibTooltipScanner", 30)
 if (not LibTooltipScanner) then	
 	return
 end
@@ -29,6 +29,7 @@ local GetActionCount = _G.GetActionCount
 local GetActionLossOfControlCooldown = _G.GetActionLossOfControlCooldown
 local GetActionText = _G.GetActionText
 local GetActionTexture = _G.GetActionTexture
+local GetBestMapForUnit = _G.C_Map.GetBestMapForUnit
 local GetDetailedItemLevelInfo = _G.GetDetailedItemLevelInfo 
 local GetGuildBankItemInfo = _G.GetSpecializationRole
 local GetGuildInfo = _G.GetGuildInfo
@@ -49,6 +50,8 @@ local UnitCreatureType = _G.UnitCreatureType
 local UnitExists = _G.UnitExists
 local UnitEffectiveLevel = _G.UnitEffectiveLevel
 local UnitFactionGroup = _G.UnitFactionGroup
+local UnitInParty = _G.UnitInParty
+local UnitInRaid = _G.UnitInRaid
 local UnitIsBattlePetCompanion = _G.UnitIsBattlePetCompanion
 local UnitIsDead = _G.UnitIsDead
 local UnitIsGhost = _G.UnitIsGhost
@@ -1412,6 +1415,9 @@ LibTooltipScanner.GetTooltipDataForUnit = function(self, unit, tbl)
 			local isPVP = UnitIsPVP(unit)
 			local isFFA = UnitIsPVPFreeForAll(unit)
 			local pvpName = UnitPVPName(unit)
+			local inParty = UnitInParty(unit)
+			local inRaid = UnitInRaid(unit)
+			local uiMapID = (inParty or inRaid) and GetBestMapForUnit(unit)
 
 			tbl.isPlayer = isPlayer
 			tbl.playerFaction = englishFaction
@@ -1433,6 +1439,9 @@ LibTooltipScanner.GetTooltipDataForUnit = function(self, unit, tbl)
 			tbl.isPVP = isPVP
 			tbl.isFFA = isFFA
 			tbl.pvpName = pvpName
+			tbl.inParty = inParty
+			tbl.inRaid = inRaid
+			tbl.uiMapID = uiMapID
 	
 		-- Vanity-, wild- and battle pets
 		elseif (isWildPet or isBattlePet) then 
