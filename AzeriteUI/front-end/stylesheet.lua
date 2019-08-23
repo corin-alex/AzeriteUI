@@ -668,12 +668,10 @@ local Core = {
 		PlayerPowerBarAlt = true, 
 		TotemFrame = true, 
 		Tutorials = true,
-		
 		UnitFramePlayer = true,
 		UnitFramePet = true,
 		UnitFrameTarget = true,
 		UnitFrameToT = true,
-		UnitFramePet = true,
 		UnitFrameFocus = true,
 		UnitFrameParty = true,
 		UnitFrameBoss = true,
