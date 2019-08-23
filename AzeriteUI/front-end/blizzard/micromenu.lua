@@ -496,4 +496,3 @@ Module.OnEnable = function(self)
 	self:AddOptionsToMenuButton()
 	self:UpdatePerformanceBar()
 end 
-	
