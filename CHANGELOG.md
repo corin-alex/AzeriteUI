@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.172-Release] 2019-08-23
+### Added
+- Attempted to add zone info to group tooltips. May or may not work. 
+
+### Changed
+- The micro menu should now work fine even if it has been enabled in Bartender4. We override the user error. 
+
 ## [1.2.171-Release] 2019-08-17
 ### Changed
 - Nameplates are now scaled according to distance, and also have their max range increased. 
