@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.173-Release] 2019-08-25
+### Changed
+- Moved the UI switcher command system to the back-end. 
+
 ## [1.2.172-Release] 2019-08-23
 ### Added
 - Attempted to add zone info to group tooltips. May or may not work. 
