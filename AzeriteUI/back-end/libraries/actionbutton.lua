@@ -1,4 +1,4 @@
-local LibSecureButton = CogWheel:Set("LibSecureButton", 60)
+local LibSecureButton = CogWheel:Set("LibSecureButton", 61)
 if (not LibSecureButton) then	
 	return
 end
@@ -1121,7 +1121,6 @@ LibSecureButton.CreateButtonSpellHighlight = function(self, button)
 	model:SetCamDistanceScale(3)
 	model:SetPortraitZoom(0)
 	model:SetPosition(0, 0, 0)
-	model:SetPoint("TOP")
 
 	button.SpellHighlight.Model = model
 end
