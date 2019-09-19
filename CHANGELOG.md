@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.175-Release] 2019-09-19
+### Changed
+- Only critters will get the tiny target frame now. 
+- The actionbutton icons are now roughly 30% brigher compared to what they were before. 
+
 ## [1.2.174-Release] 2019-08-31
 ### Fixed
 - Locked the main chat in a manner not affecting its DropDown, thus preventing taint from spreading to the Compact group frames. 
