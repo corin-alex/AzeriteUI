@@ -70,6 +70,7 @@ local IsXPUserDisabled = _G.IsXPUserDisabled
 local RegisterAttributeDriver = _G.RegisterAttributeDriver
 local UnitClass = _G.UnitClass
 local UnitClassification = _G.UnitClassification
+local UnitCreatureType = _G.UnitCreatureType
 local UnitExists = _G.UnitExists
 local UnitIsConnected = _G.UnitIsConnected
 local UnitIsDeadOrGhost = _G.UnitIsDeadOrGhost
@@ -893,6 +894,7 @@ local Target_PostUpdateTextures = function(self)
 	local targetLevel = UnitLevel("target") or 0
 	local maxLevel = GetEffectiveExpansionMaxLevel()
 	local classification = UnitClassification("target")
+	local creatureType = UnitCreatureType("target")
 
 	if UnitIsPlayer("target") then 
 		if ((targetLevel >= maxLevel) or (UnitIsUnit("target", "player") and (not PlayerHasXP()))) then 
@@ -908,7 +910,7 @@ local Target_PostUpdateTextures = function(self)
 		targetStyle = "Seasoned"
 	elseif (targetLevel >= Layout.HardenedLevel) then 
 		targetStyle = "Hardened"
-	elseif (targetLevel == 1) then 
+	elseif (creatureType == "Critter") then 
 		targetStyle = "Critter"
 	else
 		targetStyle = "Novice" 
