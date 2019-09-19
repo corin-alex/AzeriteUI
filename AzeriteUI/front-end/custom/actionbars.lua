@@ -619,7 +619,7 @@ ActionButton.PostCreate = function(self, ...)
 	self.Darken:SetTexture(BLANK_TEXTURE)
 	self.Darken:SetVertexColor(0, 0, 0)
 	self.Darken.highlight = 0
-	self.Darken.normal = .35
+	self.Darken.normal = .15
 
 	if self.layout.UseIconShade then 
 		self.Shade = self:CreateTexture()
