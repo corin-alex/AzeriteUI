@@ -838,7 +838,7 @@ local BlizzardFloaterHUD = {
 
 		ZoneAbilityButtonKillStyleTexture = true, 
 
-	StyleDurabilityFrame = true, 
+	StyleDurabilityFrame = false, -- it breaks again for some in 8.2.5, so disabling it 
 		DurabilityFramePlace = { "CENTER", "UIParent", "CENTER", 190, 0 },
 
 	StyleVehicleSeatIndicator = true, 
