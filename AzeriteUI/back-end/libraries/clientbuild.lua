@@ -1,4 +1,4 @@
-local LibClientBuild = CogWheel:Set("LibClientBuild", 30)
+local LibClientBuild = CogWheel:Set("LibClientBuild", 31)
 if (not LibClientBuild) then
 	return
 end
@@ -196,6 +196,7 @@ local builds = {
 		["8.1.5"] 	= 29704, 
 		["8.2.0"] 	= 30920, 
 		["8.2.0"] 	= 31229, 
+		["8.2.5"] 	= 31960, -- September 25th 2019 (EU)
 
 	["Classic"] = 31407, 
 		["1.13.2"] = 31407, -- August 8th 2019 Pre-Launch build

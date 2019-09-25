@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.176-Release] 2019-09-25
+### Changed
+- Bump TOC to patch 8.2.5.
+
 ## [1.2.175-Release] 2019-09-19
 ### Changed
 - Only critters will get the tiny target frame now. 
