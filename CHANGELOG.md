@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.178-Release] 2019-10-07
+### Added
+- Since Blizzard's new secure anchoring system just plainly SUCKS, I went ahead and just wrote a new durability frame instead. So go fuck yourself with your family anchor connection, Blizzard! >:/
+
+### Changed
+- Now colors the tooltip location of grouped units according to the zone the targeted unit is in, not the zone the player is in, which definitely was a typo to begin with, and the reason for the related bug mentioned below.
+
+### Fixed
+- Fixed an issue that would occur when hovering over grouped units when the player's current zone information wasn't available. 
+
+### Removed
+- Removed the Blizzard durability frame since we have our own now. 
+
 ## [1.2.177-Release] 2019-09-25
 ### Changed
 - Disabling re-positioning of the Durability indicator, as it appears to be bugged again for some in WoW Client patch 8.2.5.
