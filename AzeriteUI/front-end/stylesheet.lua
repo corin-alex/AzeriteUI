@@ -661,6 +661,7 @@ local Core = {
 		CaptureBar = true,
 		CastBars = true,
 		Chat = true,
+		Durability = true,
 		LevelUpDisplay = true,
 		Minimap = true,
 		OrderHall = true,
@@ -838,8 +839,6 @@ local BlizzardFloaterHUD = {
 
 		ZoneAbilityButtonKillStyleTexture = true, 
 
-	StyleDurabilityFrame = false, -- it breaks again for some in 8.2.5, so disabling it 
-		DurabilityFramePlace = { "CENTER", "UIParent", "CENTER", 190, 0 },
 
 	StyleVehicleSeatIndicator = true, 
 		VehicleSeatIndicatorPlace = { "CENTER", "UICenter", "CENTER", 424, 0 }, 

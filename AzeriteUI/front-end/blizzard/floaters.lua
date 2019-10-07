@@ -457,24 +457,6 @@ Module.StyleZoneAbilityButton = function(self)
 
 end 
 
-Module.StyleDurabilityFrame = function(self)
-	if (not Layout.StyleDurabilityFrame) then 
-		return 
-	end
-
-	-- Set this already here, to prevent broken SetPoint hooking in 8.2.0 
-	--*Note to self: would anchoring relative to the MinimapCluster solve it?
-	StyleCache[DurabilityFrame] = true 
-
-	self:DisableMappy(DurabilityFrame)
-	self:CreateHolder(DurabilityFrame, unpack(Layout.DurabilityFramePlace))
-	self:CreatePointHook(DurabilityFrame)
-
-	-- This will prevent the durability frame size from affecting other blizzard anchors
-	DurabilityFrame.IsShown = function() return false end
-
-end 
-
 Module.StyleVehicleSeatIndicator = function(self)
 	if (not Layout.StyleVehicleSeatIndicator) then 
 		return 
@@ -606,7 +588,6 @@ Module.OnInit = function(self)
 end 
 
 Module.OnEnable = function(self)
-	self:StyleDurabilityFrame()
 	self:StyleVehicleSeatIndicator()
 	self:StyleExtraActionButton()
 	self:StyleZoneAbilityButton()

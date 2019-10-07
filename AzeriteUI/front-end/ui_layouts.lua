@@ -300,6 +300,11 @@ Layouts.ActionBarMain = {
 
 }
 
+-- Floaters
+Layouts.FloaterHUD = {
+	Place = { "CENTER", "UICenter", "CENTER", 190, 0 },
+}
+
 -- NamePlates
 Layouts.NamePlates = {
 	Colors = Colors,
