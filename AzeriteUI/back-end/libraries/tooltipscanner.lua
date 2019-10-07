@@ -1,4 +1,4 @@
-local LibTooltipScanner = CogWheel:Set("LibTooltipScanner", 30)
+local LibTooltipScanner = CogWheel:Set("LibTooltipScanner", 31)
 if (not LibTooltipScanner) then	
 	return
 end
@@ -1403,8 +1403,6 @@ LibTooltipScanner.GetTooltipDataForUnit = function(self, unit, tbl)
 
 		-- Players
 		if isPlayer then 
-
-
 			local classDisplayName, class, classID = UnitClass(unit)
 			local englishFaction, localizedFaction = UnitFactionGroup(unit)
 			local guildName, guildRankName, guildRankIndex, realm = GetGuildInfo(unit)
@@ -1475,7 +1473,6 @@ LibTooltipScanner.GetTooltipDataForUnit = function(self, unit, tbl)
 
 		-- NPCs
 		else 
-
 			local reaction = UnitReaction(unit, "player")
 			local classification = UnitClassification(unit)
 			if (unitLevel < 0) or (unitEffectiveLevel < 0) then

@@ -1,4 +1,4 @@
-local LibTooltip = CogWheel:Set("LibTooltip", 54)
+local LibTooltip = CogWheel:Set("LibTooltip", 55)
 if (not LibTooltip) then	
 	return
 end
@@ -1538,12 +1538,15 @@ Tooltip.SetUnit = function(self, unit)
 			if data.uiMapID then 
 				local uiMapID = GetBestMapForUnit("player")
 				if (uiMapID ~= data.uiMapID) then 
-					local mapName, mapPvPType, mapPvPLabel = LibZone:GetPvPType(uiMapID)
-					local color = mapPvPType and colors.zone[mapPvPType] or colors.zone.unknown
-
-					self:AddLine(" ")
-					self:AddLine(LOCATION_COLON, colors.quest.gray[1], colors.quest.gray[2], colors.quest.gray[3])
-					self:AddDoubleLine(mapName, mapPvPLabel, colors.offwhite[1], colors.offwhite[2], colors.offwhite[3], color[1], color[2], color[3])
+					-- Color according to the faction of the tooltip unit's current zone, 
+					-- relative to that zone's standing with the player. 
+					local name, pvpType, label = LibZone:GetPvPType(data.uiMapID)
+					if (name) then 
+						local color = pvpType and colors.zone[pvpType] or colors.zone.unknown
+						self:AddLine(" ")
+						self:AddLine(LOCATION_COLON, colors.quest.gray[1], colors.quest.gray[2], colors.quest.gray[3])
+						self:AddDoubleLine(name, label, colors.offwhite[1], colors.offwhite[2], colors.offwhite[3], color[1], color[2], color[3])
+					end 
 				end
 			end 
 
