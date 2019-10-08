@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.179-Release] 2019-10-08
+- ToC updates. 
+
 ## [1.2.178-Release] 2019-10-07
 ### Added
 - Since Blizzard's new secure anchoring system just plainly SUCKS, I went ahead and just wrote a new durability frame instead. So go fuck yourself with your family anchor connection, Blizzard! >:/
