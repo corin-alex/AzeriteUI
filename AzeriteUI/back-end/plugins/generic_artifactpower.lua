@@ -6,10 +6,11 @@ local tonumber = tonumber
 local tostring = tostring
 
 -- WoW API
-local Item = _G.Item
-local FindActiveAzeriteItem = _G.C_AzeriteItem.FindActiveAzeriteItem
-local GetAzeriteItemXPInfo = _G.C_AzeriteItem.GetAzeriteItemXPInfo
-local GetPowerLevel = _G.C_AzeriteItem.GetPowerLevel
+local Item = Item
+local IsAzeriteItemLocationBankBag = AzeriteUtil.IsAzeriteItemLocationBankBag
+local FindActiveAzeriteItem = C_AzeriteItem.FindActiveAzeriteItem
+local GetAzeriteItemXPInfo = C_AzeriteItem.GetAzeriteItemXPInfo
+local GetPowerLevel = C_AzeriteItem.GetPowerLevel
 
 local short = function(value)
 	value = tonumber(value)
@@ -97,8 +98,15 @@ local Update = function(self, event, ...)
 		element:PreUpdate()
 	end
 
-	local azeriteItemLocation = FindActiveAzeriteItem()
-	if (not azeriteItemLocation) then 
+	if (event == "BAG_UPDATE") then 
+		local bagID = ...
+		if not(bagID > NUM_BAG_SLOTS) then
+			return
+		end
+	end 
+
+	local azeriteItemLocation = FindActiveAzeriteItem() -- check return values here
+	if (not azeriteItemLocation) or (IsAzeriteItemLocationBankBag(azeriteItemLocation)) then 
 		if (element.showEmpty) then 
 			element:SetMinMaxValues(0, 100)
 			element:SetValue(0)
@@ -115,7 +123,7 @@ local Update = function(self, event, ...)
 	end
 	
 	local min, max, level 
-	local min, max = GetAzeriteItemXPInfo(azeriteItemLocation)
+	local min, max = GetAzeriteItemXPInfo(azeriteItemLocation) 
 	local level = GetPowerLevel(azeriteItemLocation) 
 
 	if element:IsObjectType("StatusBar") then 
@@ -162,6 +170,7 @@ local Enable = function(self)
 		self:RegisterEvent("PLAYER_LOGIN", Proxy, true)
 		self:RegisterEvent("PLAYER_ALIVE", Proxy, true)
 		self:RegisterEvent("CVAR_UPDATE", Proxy, true)
+		self:RegisterEvent("BAG_UPDATE", Proxy, true)
 
 		return true
 	end
@@ -175,11 +184,12 @@ local Disable = function(self)
 		self:UnregisterEvent("PLAYER_LOGIN", Proxy)
 		self:UnregisterEvent("PLAYER_ALIVE", Proxy)
 		self:UnregisterEvent("CVAR_UPDATE", Proxy)
+		self:UnregisterEvent("BAG_UPDATE", Proxy)
 		element:Hide()
 	end
 end 
 
 -- Register it with compatible libraries
 for _,Lib in ipairs({ (CogWheel("LibUnitFrame", true)), (CogWheel("LibNamePlate", true)), (CogWheel("LibMinimap", true)) }) do 
-	Lib:RegisterElement("ArtifactPower", Enable, Disable, Proxy, 15)
+	Lib:RegisterElement("ArtifactPower", Enable, Disable, Proxy, 17)
 end 

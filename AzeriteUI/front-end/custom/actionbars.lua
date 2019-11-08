@@ -18,7 +18,6 @@ local tonumber = tonumber
 local tostring = tostring
 
 -- WoW API
-local FindActiveAzeriteItem = C_AzeriteItem.FindActiveAzeriteItem
 local GetAzeriteItemXPInfo = C_AzeriteItem.GetAzeriteItemXPInfo
 local GetPowerLevel = C_AzeriteItem.GetPowerLevel
 local InCombatLockdown = InCombatLockdown
@@ -312,7 +311,7 @@ local Bars_UpdateTooltip = function(self)
 
 	local tooltip = self:GetTooltip()
 	local hasXP = Module.PlayerHasXP()
-	local hasAP = FindActiveAzeriteItem()
+	local hasAP = Module.PlayerHasAP()
 	local colors = Colors
 
 	local NC = "|r"

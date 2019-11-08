@@ -1,4 +1,4 @@
-local LibPlayerData = CogWheel:Set("LibPlayerData", 6)
+local LibPlayerData = CogWheel:Set("LibPlayerData", 7)
 if (not LibPlayerData) then	
 	return
 end
@@ -17,10 +17,12 @@ local tonumber = tonumber
 local type = type
 
 -- WoW API
+local FindActiveAzeriteItem = C_AzeriteItem.FindActiveAzeriteItem
 local GetAccountExpansionLevel = _G.GetAccountExpansionLevel
 local GetExpansionLevel = _G.GetExpansionLevel
 local GetSpecialization = _G.GetSpecialization
 local GetSpecializationInfo = _G.GetSpecializationInfo
+local IsAzeriteItemLocationBankBag = AzeriteUtil.IsAzeriteItemLocationBankBag
 local IsXPUserDisabled = _G.IsXPUserDisabled
 local UnitClass = _G.UnitClass
 local UnitLevel = _G.UnitLevel
@@ -118,6 +120,13 @@ LibPlayerData.IsPlayerAtEffectiveExpansionMaxLevel = function()
 	return LibPlayerData.IsUnitLevelAtEffectiveExpansionMaxLevel(UnitLevel("player"))
 end
 
+LibPlayerData.PlayerHasAP = function()
+	local azeriteItemLocation = FindActiveAzeriteItem()
+	if (azeriteItemLocation) and (not IsAzeriteItemLocationBankBag(azeriteItemLocation)) then
+		return azeriteItemLocation
+	end
+end
+
 -- Return whether the player currently can gain XP
 LibPlayerData.PlayerHasXP = function(useExpansionMax)
 	if IsXPUserDisabled() then 
@@ -168,6 +177,7 @@ local embedMethods = {
 	IsPlayerAtEffectiveExpansionMaxLevel = true, 
 	IsUnitLevelAtEffectiveMaxLevel = true, 
 	IsUnitLevelAtEffectiveExpansionMaxLevel = true, 
+	PlayerHasAP = true, 
 	PlayerHasXP = true, 
 	PlayerHasRep = true, 
 	PlayerCanTank = true, 

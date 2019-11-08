@@ -24,7 +24,6 @@ local tonumber = tonumber
 local unpack = unpack
 
 -- WoW API
-local FindActiveAzeriteItem = C_AzeriteItem and C_AzeriteItem.FindActiveAzeriteItem
 local GetAzeriteItemXPInfo = C_AzeriteItem and C_AzeriteItem.GetAzeriteItemXPInfo
 local GetFactionInfo = _G.GetFactionInfo
 local GetFactionParagonInfo = C_Reputation and C_Reputation.GetFactionParagonInfo
@@ -170,7 +169,7 @@ local Toggle_UpdateTooltip = function(toggle)
 
 	local hasXP = Module.PlayerHasXP()
 	local hasRep = Module.PlayerHasRep()
-	local hasAP = FindActiveAzeriteItem()
+	local hasAP = Module.PlayerHasAP()
 
 	local NC = "|r"
 	local colors = toggle._owner.colors 
@@ -1357,7 +1356,7 @@ Module.UpdateBars = function(self, event, ...)
 	-- Priority us currently xp > rep > ap
 	local hasRep = Module.PlayerHasRep()
 	local hasXP = Module.PlayerHasXP()
-	local hasAP = FindActiveAzeriteItem()
+	local hasAP = Module.PlayerHasAP()
 
 	-- Will include choices later on
 	local first, second 
@@ -1494,8 +1493,8 @@ Module.UpdateBars = function(self, event, ...)
 
 				-- Update pointers and callbacks to the active element
 				Handler[first] = Spinner[1]
-				Handler[first].OverrideValue = hasXP and XP_OverrideValue or hasRep and Rep_OverrideValue or AP_OverrideValue
-				Handler[first].PostUpdate = hasXP and PostUpdate_XP or hasRep and PostUpdate_Rep or PostUpdate_AP
+				Handler[first].OverrideValue = hasXP and XP_OverrideValue or hasRep and Rep_OverrideValue or hasAP and AP_OverrideValue
+				Handler[first].PostUpdate = hasXP and PostUpdate_XP or hasRep and PostUpdate_Rep or hasAP and PostUpdate_AP
 
 				-- Enable the active element
 				self:EnableMinimapElement(first)
@@ -1509,6 +1508,8 @@ Module.UpdateBars = function(self, event, ...)
 
 			-- If the second spinner is still shown, hide it!
 			if (Spinner[2]:IsShown()) then 
+				Spinner[2].OverrideValue = nil
+				Spinner[2].PostUpdate = nil
 				Spinner[2]:Hide()
 			end 
 
@@ -1561,6 +1562,13 @@ Module.OnEvent = function(self, event, ...)
 		end 
 	end 
 
+	if (event == "BAG_UPDATE") then 
+		local bagID = ...
+		if not(bagID > NUM_BAG_SLOTS) then
+			return
+		end
+	end 
+
 	if Layout.UseStatusRings then 
 		self:UpdateBars()
 	end 
@@ -1605,6 +1613,7 @@ Module.OnEnable = function(self)
 		self:RegisterEvent("PLAYER_LEVEL_UP", "OnEvent")
 		self:RegisterEvent("PLAYER_XP_UPDATE", "OnEvent")
 		self:RegisterEvent("UPDATE_FACTION", "OnEvent")
+		self:RegisterEvent("BAG_UPDATE", "OnEvent")
 	end 
 
 	-- Enable all minimap elements
