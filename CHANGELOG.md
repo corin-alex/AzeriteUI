@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.181-Release] 2019-11-08
+### Fixed
+- The minimap azerite bar should no longer bug out if you place your Heart of Azeroth into one of the additional bags in your bank.
+
 ## [1.2.180-Release] 2019-10-08
 ### Changed
 - Now compatible with Plater Nameplates. 
