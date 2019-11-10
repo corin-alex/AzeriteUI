@@ -1,4 +1,4 @@
-local LibNamePlate = CogWheel:Set("LibNamePlate", 39)
+local LibNamePlate = CogWheel:Set("LibNamePlate", 40)
 if (not LibNamePlate) then	
 	return
 end
@@ -988,7 +988,7 @@ LibNamePlate.OnEvent = function(self, event, ...)
 		if (addon == "Blizzard_NamePlates") then
 			hasSetBlizzardSettings = true
 			self:UpdateNamePlateOptions()
-			self:UnregisterEvent("ADDON_LOADED")
+			self:UnregisterEvent("ADDON_LOADED", "OnEvent")
 		end
 	end
 end
@@ -1150,18 +1150,16 @@ LibNamePlate.Enable = function(self)
 end 
 
 LibNamePlate.KillClassClutter = function(self)
-	if NamePlateDriverFrame then
-		DeathKnightResourceOverlayFrame:UnregisterAllEvents()
-		ClassNameplateBarMageFrame:UnregisterAllEvents()
-		ClassNameplateBarWindwalkerMonkFrame:UnregisterAllEvents()
-		ClassNameplateBarPaladinFrame:UnregisterAllEvents()
-		ClassNameplateBarRogueDruidFrame:UnregisterAllEvents()
-		ClassNameplateBarWarlockFrame:UnregisterAllEvents()
-		ClassNameplateManaBarFrame:UnregisterAllEvents()
-		ClassNameplateBrewmasterBarFrame:UnregisterAllEvents()
-		NamePlateDriverFrame:SetClassNameplateManaBar(nil)
-		NamePlateDriverFrame:SetClassNameplateBar(nil)
-	end
+	DeathKnightResourceOverlayFrame:UnregisterAllEvents()
+	ClassNameplateBarMageFrame:UnregisterAllEvents()
+	ClassNameplateBarWindwalkerMonkFrame:UnregisterAllEvents()
+	ClassNameplateBarPaladinFrame:UnregisterAllEvents()
+	ClassNameplateBarRogueDruidFrame:UnregisterAllEvents()
+	ClassNameplateBarWarlockFrame:UnregisterAllEvents()
+	ClassNameplateManaBarFrame:UnregisterAllEvents()
+	ClassNameplateBrewmasterBarFrame:UnregisterAllEvents()
+	NamePlateDriverFrame:SetClassNameplateManaBar(nil)
+	NamePlateDriverFrame:SetClassNameplateBar(nil)
 end 
 
 LibNamePlate.StartNamePlateEngine = function(self)
@@ -1169,12 +1167,19 @@ LibNamePlate.StartNamePlateEngine = function(self)
 		return
 	end 
 	if IsLoggedIn() then 
-		-- Should do some initial parsing of already created nameplates here (?)
-		-- *Only really needed if the modules enable it after PLAYER_ENTERING_WORLD, which they shouldn't anyway. 
-		return LibNamePlate:Enable()
+		if (IsAddOnLoaded("Blizzard_NamePlates")) then 
+			return LibNamePlate:Enable()
+		else 
+			LibNamePlate:UnregisterAllEvents()
+			LibNamePlate:RegisterEvent("ADDON_LOADED", "Enable")
+		end
 	else 
-		LibNamePlate:UnregisterAllEvents()
-		LibNamePlate:RegisterEvent("PLAYER_ENTERING_WORLD", "Enable")
+		if (IsAddOnLoaded("Blizzard_NamePlates")) then 
+			return LibNamePlate:Enable()
+		else 
+			LibNamePlate:UnregisterAllEvents()
+			LibNamePlate:RegisterEvent("ADDON_LOADED", "Enable")
+		end
 	end 
 end 
 
