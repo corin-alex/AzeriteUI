@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.182-Release] 2019-11-10
+### Fixed
+- Make sure the nameplate class clutter stays gone. 
+
 ## [1.2.181-Release] 2019-11-08
 ### Fixed
 - The minimap azerite bar should no longer bug out if you place your Heart of Azeroth into one of the additional bags in your bank.
