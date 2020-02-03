@@ -1441,12 +1441,27 @@ local Template_SmallFrameReversed_Auras = setmetatable({
 	CastBarOrientation = "LEFT", 
 	CastBarSetFlippedHorizontally = true, 
 	AuraFramePlace = { "RIGHT", -(Constant.SmallFrame[1] + 13), -1 },
-	AuraGrowthX = "LEFT", 
-	AuraGrowthY = "DOWN", 
-	AuraTooltipPoint = "TOPRIGHT", 
-	AuraTooltipRelPoint = "BOTTOMRIGHT", 
-	AuraTooltipOffsetX = -8, 
-	AuraTooltipOffsetY = -16
+	AuraProperties = {
+		growthX = "LEFT", 
+		growthY = "DOWN", 
+		spacingH = 4, 
+		spacingV = 4, 
+		auraSize = Constant.SmallAuraSize, auraWidth = nil, auraHeight = nil, 
+		maxVisible = nil, maxBuffs = nil, maxDebuffs = nil, 
+		filter = nil, filterBuffs = "HELPFUL", filterDebuffs = "HARMFUL", 
+		func = nil, funcBuffs = nil, funcDebuffs = nil, 
+		debuffsFirst = false, 
+		disableMouse = false, 
+		showSpirals = false, 
+		showDurations = true, 
+		showLongDurations = false,
+		tooltipDefaultPosition = false, 
+		tooltipPoint = "TOPRIGHT",
+		tooltipAnchor = nil,
+		tooltipRelPoint = "BOTTOMRIGHT",
+		tooltipOffsetX = -8,
+		tooltipOffsetY = -16
+	},
 }, { __index = Template_SmallFrame_Auras })
 
 local Template_TinyFrame = {
