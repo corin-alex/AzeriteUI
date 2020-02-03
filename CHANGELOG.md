@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. Be aware th
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.183-Release] 2020-02-03
+### Fixed
+- Fixed an issue that caused boss auras to grow from the end of the aura frame towards the boss frame, instead of from the boss frame and outwards.
+- Removed some annoying clutter Blizzard had added to the game menu frame. 
+
 ## [1.2.182-Release] 2019-11-10
 ### Fixed
 - Make sure the nameplate class clutter stays gone. 
