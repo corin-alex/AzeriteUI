@@ -1,4 +1,4 @@
-[ ![Become a Patreon](http://azeriteui.com/img/social-media-buttons-patreon-small.jpg) ](https://www.patreon.com/AzeriteUI) 
+[ ![Become a Patreon](http://larsnorbergofficial.com/img/social-media-buttons-patreon-small.jpg) ](https://www.patreon.com/goldpawsstuff) 
 
 This is a custom user interface for World of Warcraft: Battle For Azeroth, with a fresh new design and brand new custom codebase at its core. Designed by Daniel "Blakmane" Troko & coded by Lars "Goldpaw" Norberg. 
 
