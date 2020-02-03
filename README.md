@@ -6,6 +6,16 @@ The motivation of this user interface is immersion, and a more simplified gaming
 
 Looking for AzeriteUI for WoW Classic? Get it [here](https://www.curseforge.com/wow/addons/azeriteui-classic)!
 
+## **Pledge to my work:**  
+* Patreon: [www.patreon.com/goldpawsstuff](https://www.patreon.com/goldpawsstuff)  
+* PayPal: [www.paypal.me/goldpawsstuff](https://www.paypal.me/goldpawsstuff)  
+* Liberapay: [liberapay.com/goldpawsstuff/donate](https://liberapay.com/goldpawsstuff/donate)
+
+## **Join me on social media:**  
+* Discord: [discord.gg/MUSfWXd](https://discord.gg/MUSfWXd)  
+* Twitter: [@GoldpawsStuff](https://twitter.com/goldpawsstuff)  
+
+## **Frequently Asked Questions:**  
 ## **It's so big, how can I scale it down?**  
 You can't. It's meant to be this big! We're a couple of lazy, laid back gamers, and prefer gaming in a fair distance from our screens, keeping things relaxed and simplified. Big health bars, easy to see big buttons, nothing there we don't absolutely need. We treat this as a console game, and this UI is built around that philosophy. The sizes should thus be relatively the same on all screens, relative to the height of the screen. 
 
@@ -20,20 +30,3 @@ For more buttons, right-click the cogwheel icon in the bottom right corner of th
 ## **How can I disable the actionbars?**
 This is not a feature we intend to implement. We do realize that some of you would like this feature for it to look better with ConsolePort, or just completely replace our bars with Bartender, but dismantling our user interface to make it fit a completely different project slightly better just isn't something we're going to do. We do plan to release a project better suited for ConsolePort, though. So those looking for that, follow our twitter!
 
-## **Other downloads:**
-* AzeriteUI for WoW Classic: [www.curseforge.com/wow/addons/azeriteui-classic](https://www.curseforge.com/wow/addons/azeriteui-classic)
-* AzeriteUI Masque Theme: [www.curseforge.com/wow/addons/masque-azerite](https://www.curseforge.com/wow/addons/masque-azerite)
-* AzeriteUI KuiNameplates theme: [www.curseforge.com/wow/addons/kuinameplates-azeriteui](https://www.curseforge.com/wow/addons/kuinameplates-azeriteui)
-
-## **Pledge to our work:**  
-* Patreon: [www.patreon.com/AzeriteUI](https://www.patreon.com/azeriteui)  
-* PayPal: [www.paypal.me/AzeriteUI](https://www.paypal.me/azeriteui)  
-* Liberapay: [liberapay.com/AzeriteTeam/donate](https://liberapay.com/AzeriteTeam/donate)
-
-## **Follow Azerite Team:**  
-* Discord: [discord.gg/MUSfWXd](https://discord.gg/MUSfWXd)  
-* Twitter: [@AzeriteUI](https://twitter.com/azeriteui)  
-* Instagram: [@AzeriteUI](https://instagram.com/azeriteui/)  
-* Facebook: [@AzeriteUI](https://www.facebook.com/azeriteui/)  
-* YouTube: [@AzeriteUI](https://www.youtube.com/azeriteui)  
-* Reddit: [@AzeriteUI](https://www.reddit.com/r/azeriteui/)  
