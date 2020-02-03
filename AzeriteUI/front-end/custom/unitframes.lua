@@ -1037,7 +1037,7 @@ local StyleSmallFrame = function(self, unit, id, Layout, ...)
 	-----------------------------------------------------------
 	self:SetSize(unpack(Layout.Size)) 
 
-	if (unit:match("^arena(%d+)")) or (unit:match("^boss(%d+)")) then 
+	if (unit:match("^arena(%d+)")) or (unit:match("^boss(%d+)")) or (unit == "player" and id) then 
 		positionHeaderFrame(self, unit, id, Layout)
 	else
 		self:Place(unpack(Layout.Place)) 
@@ -4269,6 +4269,8 @@ end
 -- Boss
 -----------------------------------------------------------
 UnitFrameBoss.OnInit = function(self)
+	local dev --= true 
+
 	self.layout = CogWheel("LibDB"):GetDatabase(Core:GetPrefix()..":[UnitFrameBoss]", true)
 	self.frame = {}
 
@@ -4276,7 +4278,7 @@ UnitFrameBoss.OnInit = function(self)
 		return UnitStyles.StyleBossFrames(frame, unit, id, self.layout, ...)
 	end
 	for i = 1,5 do 
-		self.frame[tostring(i)] = self:SpawnUnitFrame("boss"..i, "UICenter", style)
+		self.frame[tostring(i)] = self:SpawnUnitFrame(dev and "player" or "boss"..i, "UICenter", style)
 	end 
 end 
 
