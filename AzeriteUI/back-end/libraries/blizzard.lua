@@ -303,10 +303,10 @@ UIWidgets["Chat"] = function(self)
 		QuickJoinToastButton:EnableMouse(false)
 		QuickJoinToastButton:SetParent(UIHider)
 	end 
-	killQuickToast()
+	--killQuickToast()
 
 	-- This pops back up on zoning sometimes, so keep removing it
-	LibBlizzard:RegisterEvent("PLAYER_ENTERING_WORLD", killQuickToast)
+	--LibBlizzard:RegisterEvent("PLAYER_ENTERING_WORLD", killQuickToast)
 end 
 
 UIWidgets["Durability"] = function(self)

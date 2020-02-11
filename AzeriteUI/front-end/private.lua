@@ -389,7 +389,10 @@ auraFilters.player = function(element, isBuff, unit, isOwnedByPlayer, name, icon
 			if unitIsPlayer[unit] and (bit_band(userFlags, OnPlayer) ~= 0) then 
 				return true  
 			end
-
+		elseif isBuff then 
+			if (timeLeft and (timeLeft < 180)) then 
+				return true
+			end 
 		elseif infoFlags then 
 			if (unitCaster and isOwnedByPlayer) and (bit_band(infoFlags, infoFilter.IsPlayerSpell) ~= 0) then 
 				return true  
